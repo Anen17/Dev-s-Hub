@@ -223,7 +223,7 @@ Folder4.Button("FunkyFriday Autoplayer", "Inject", function()
 end)
 
 Folder5.Button("Destroy Gui", "Destroy", function()
-    Window:Remove()
+    game.CoreGui.Luminosity:Destroy
 end)
 
 game:GetService("UserInputService").InputBegan:Connect(function(Input)
