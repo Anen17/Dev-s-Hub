@@ -125,9 +125,8 @@ Folder1.Slider("JumpPower", {Precise = true, Default = 50, Min = 50, Max = 400},
 end)
 
 Folder2.TextBox("Teleport to Player", "Enter Name", function(Text)
-TextBox.Name = ("YUP")
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players:FindFirstChild(TextBox).Character.HumanoidRootPart.Position)
-          game.StarterGui:SetCore("SendNotification", {
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players:FindFirstChild(Text.Input).Character.HumanoidRootPart.Position)
+          game.StarterGui:SetCore("SendNotification", 
 		Title = "Dev's Hub";
 		Text = "Teleported to Player";
 		Icon = "rbxassetid://6034996698";
