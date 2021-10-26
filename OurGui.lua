@@ -124,17 +124,6 @@ Folder1.Slider("JumpPower", {Precise = true, Default = 50, Min = 50, Max = 400},
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = Status
 end)
 
-Folder2.TextBox("Teleport to Player", "Enter Name", function(Text)
-print("TextBox Triggered: " .. Text)
- game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players:FindFirstChild(Text).Character.HumanoidRootPart.Position)
-        game.StarterGui:SetCore("SendNotification", {
-		Title = "Dev's Hub";
-		Text = "Teleported to Player";
-		Icon = "rbxassetid://6034996698";
-		Duration = 10;
-	})
-end)
-
 Folder2.Button("ESP", "Inject", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/ic3w0lf22/Unnamed-ESP/master/UnnamedESP.lua",true))()
         game.StarterGui:SetCore("SendNotification", {
