@@ -200,9 +200,10 @@ Folder4.Button("Murder Mystery 2", "Inject", function()
 end)
 
 Folder4.Button("Pet Simualtor X", "Inject", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/si1nnx/psxx/main/g"))()
     game.StarterGui:SetCore("SendNotification", {
 		Title = "Dev's Hub";
-		Text = "This script is currently down";
+		Text = "Scripts Injected";
 		Icon = "rbxassetid://6034996698";
 		Duration = 10;
 	})
