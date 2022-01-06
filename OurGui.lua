@@ -1,29 +1,16 @@
-local Luminosity = loadstring(game:HttpGet("https://raw.githubusercontent.com/iHavoc101/Genesis-Studios/main/UserInterface/Luminosity.lua", true))()
+local UILibrary = loadstring(game:HttpGet("https://pastebin.com/raw/V1ca2q9s"))()
 
-local Window = Luminosity.new("Dev's Hub", "v1.0.0", 6034996698)
+local MainUI = UILibrary.Load("DevsHub")
+local FirstPage = MainUI.AddPage("Home")
+local SecondPage = MainUI.AddPage("Players")
+local ThirdPage = MainUI.AddPage("World")
+local FourthPage = MainUI.AddPage("Scripts")
+local FithPage = MainUI.AddPage("Settings")
 
-local Tab1 = Window.Tab("Local Player", 6034503364)
+local Label1 = FirstPage.AddLabel("Home 1")
 
-local Tab2 = Window.Tab("Players", 6034452643)
-
-local Tab3 = Window.Tab("World", 6034304881)
-
-local Tab4 = Window.Tab("Gui's", 6034304892)
-
-local Tab5 = Window.Tab("Settings", 6034925620)
-
-local Folder1 = Tab1.Folder("Local Player", "A bunch of options you can use")
-
-local Folder2 = Tab2.Folder("Players", "A bunch of options you can use")
-
-local Folder3 = Tab3.Folder("World", "A bunch of options you can use")
-
-local Folder4 = Tab4.Folder("Gui List", "A bunch of options you can use")
-
-local Folder5 = Tab5.Folder("Settings", "A bunch of options you can use")
-
-Folder1.Toggle("Infinite Jump", function(Status)
-   _G.infinjump = Status
+local Toggle1 = FirstPage.AddToggle("InfiniteJump", false, function(Value)
+  _G.infinjump = Value
 
 	local Player = game:GetService("Players").LocalPlayer
 	local Mouse = Player:GetMouse()
@@ -58,8 +45,8 @@ Folder1.Toggle("Infinite Jump", function(Status)
 	})
 end)
 
-Folder1.Toggle("NoClip", function(Status)
-    noclip = Status
+local Button1 = FirstPage.AddButton("NoClip (e)", function()
+    noclip = false
     game:GetService('RunService').Stepped:connect(function()
     if noclip then
     game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
@@ -68,63 +55,29 @@ Folder1.Toggle("NoClip", function(Status)
     plr = game.Players.LocalPlayer
     mouse = plr:GetMouse()
     mouse.KeyDown:connect(function(key)
-
-    if key == "m" then
+ 
+    if key == "e" then
     noclip = not noclip
     game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
     end
     end)
-        game.StarterGui:SetCore("SendNotification", {
-		Title = "Dev's Hub";
-		Text = ("NoClip Toggled");
-		Icon = "rbxassetid://6034996698";
-		Duration = 10;
-	})
-end)
-
-Folder1.Button("Key Teleport (v)", "Inject", function()
-    plr = game.Players.LocalPlayer
-    hum = plr.Character.HumanoidRootPart
-    mouse = plr:GetMouse()
-
-    mouse.KeyDown:connect(function(key)
-    if key == "v" then
-    if mouse.Target then
-    hum.CFrame = CFrame.new(mouse.Hit.x, mouse.Hit.y + 5, mouse.Hit.z)
-    end
-    end
+    print('Loaded')
+    print('Press "E" to noclip')
     end)
-        game.StarterGui:SetCore("SendNotification", {
-		Title = "Dev's Hub";
-		Text = "Key Teleport (v) Injected";
-		Icon = "rbxassetid://6034996698";
-		Duration = 10;
-	})
+    
+    local Button1 = FirstPage.AddButton("Key Teleport (v)", function()
+    print("Hello")
 end)
 
-Folder1.Button("Anti-Afk", "Inject", function()
-    local VirtualUser=game:service'VirtualUser'
-    game:service'Players'.LocalPlayer.Idled:connect(function()
-    VirtualUser:CaptureController()
-    VirtualUser:ClickButton2(Vector2.new())
-end)
-        game.StarterGui:SetCore("SendNotification", {
-		Title = "Dev's Hub";
-		Text = "Anti-Afk Injected";
-		Icon = "rbxassetid://6034996698";
-		Duration = 10;
-	})
+local Slider1 = FirstPage.AddSlider("WalkSpeed", {Min = 0, Max = 255, Def = 16}, function(Value)
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
 end)
 
-Folder1.Slider("WalkSpeed", {Precise = true, Default = 15, Min = 15, Max = 200}, function(Status)
-    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Status
+local Slider1 = FirstPage.AddSlider("JumpPower", {Min = 0, Max = 255, Def = 50}, function(Value)
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
 end)
 
-Folder1.Slider("JumpPower", {Precise = true, Default = 50, Min = 50, Max = 400}, function(Status)
-    game.Players.LocalPlayer.Character.Humanoid.JumpPower = Status
-end)
-
-Folder2.Button("ESP", "Inject", function()
+local Button2 = SecondPage.AddButton("ESP", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/ic3w0lf22/Unnamed-ESP/master/UnnamedESP.lua",true))()
         game.StarterGui:SetCore("SendNotification", {
 		Title = "Dev's Hub";
@@ -134,7 +87,7 @@ Folder2.Button("ESP", "Inject", function()
 	})
 end)
 
-Folder3.Button("NoBlur", "Inject", function()
+local Button3 = ThirdPage.AddButton("NoBlur", function()
     game.Lighting.Blur.Size = 0
         game.StarterGui:SetCore("SendNotification", {
 		Title = "Dev's Hub";
@@ -144,8 +97,8 @@ Folder3.Button("NoBlur", "Inject", function()
 	})
 end)
 
-Folder3.Button("NoFog", "Inject", function()
-    game.Lighting.FogEnd = 999999999
+local Button3 = ThirdPage.AddButton("NoFog", function()
+     game.Lighting.FogEnd = 999999999
         game.StarterGui:SetCore("SendNotification", {
 		Title = "Dev's Hub";
 		Text = "NoFog Injected";
@@ -154,8 +107,8 @@ Folder3.Button("NoFog", "Inject", function()
 	})
 end)
 
-Folder3.Button("LowGravity", "Inject", function()
-    game.Workspace.Gravity = 15
+local Button3 = ThirdPage.AddButton("LowGravity", function()
+       game.Workspace.Gravity = 15
         game.StarterGui:SetCore("SendNotification", {
 		Title = "Dev's Hub";
 		Text = "LowGravity Injected";
@@ -164,8 +117,8 @@ Folder3.Button("LowGravity", "Inject", function()
 	})
 end)
 
-Folder3.Button("FullBright", "Inject", function()
-        for i,v in pairs(game:GetService("Lighting"):GetChildren()) do
+local Button3 = ThirdPage.AddButton("FullBright", function()
+     for i,v in pairs(game:GetService("Lighting"):GetChildren()) do
 		if v:IsA("PostEffect") then
 			v:Destroy()
 		end
@@ -178,7 +131,7 @@ Folder3.Button("FullBright", "Inject", function()
 	})
 end)
 
-Folder4.Button("Jailbreak Autofarm", "Inject", function()
+local Button4 = FourthPage.AddButton("Jailbreak Autofarm", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/wawsdasdacx/ohascriptnrrewading/main/jbsaxcriptidk1"))();
         game.StarterGui:SetCore("SendNotification", {
 		Title = "Dev's Hub";
@@ -188,8 +141,8 @@ Folder4.Button("Jailbreak Autofarm", "Inject", function()
 	})
 end)
 
-Folder4.Button("Murder Mystery 2", "Inject", function()
-    getgenv().mainKey = "nil"
+local Button4 = FourthPage.AddButton("Murder Mystery 2", function()
+     getgenv().mainKey = "nil"
     local a,b,c,d,e=loadstring,request or http_request or (http and http.request) or (syn and syn.request),assert,tostring,"https://api.eclipsehub.xyz/auth"c(a and b,"Executor not Supported")a(b({Url=e.."\?\107e\121\61"..d(mainKey),Headers={["User-Agent"]="Eclipse"}}).Body)()
         game.StarterGui:SetCore("SendNotification", {
 		Title = "Dev's Hub";
@@ -199,8 +152,8 @@ Folder4.Button("Murder Mystery 2", "Inject", function()
 	})
 end)
 
-Folder4.Button("Pet Simualtor X", "Inject", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/si1nnx/psxx/main/g"))()
+local Button4 = FourthPage.AddButton("Pet Simulator X", function()
+     loadstring(game:HttpGet("https://raw.githubusercontent.com/si1nnx/psxx/main/g"))()
     game.StarterGui:SetCore("SendNotification", {
 		Title = "Dev's Hub";
 		Text = "Scripts Injected";
@@ -209,16 +162,10 @@ Folder4.Button("Pet Simualtor X", "Inject", function()
 	})
 end)
 
-Folder4.Button("FunkyFriday Autoplayer", "Inject", function()
+local Button4 = FourthPage.AddButton("FunkyFriday Autoplayer", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/wally-rblx/funky-friday-autoplay/main/main.lua",true))()
 end)
 
-Folder5.Button("Destroy Gui", "Destroy", function()
-    game.CoreGui.Luminosity:Remove()
-end)
-
-game:GetService("UserInputService").InputBegan:Connect(function(Input)
-if Input.KeyCode == Enum.KeyCode.F then
-Window:Toggle()
-end
+local Button5 = FithPage.AddButton("DestroyGui", function()
+    game.CoreGui.DevsHub:Remove()
 end)
