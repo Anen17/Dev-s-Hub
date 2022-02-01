@@ -39,7 +39,7 @@ local Toggle1 = FirstPage.AddToggle("InfiniteJump", false, function(Value)
 	end)
         game.StarterGui:SetCore("SendNotification", {
 		Title = "Dev's Hub";
-		Text = "Infinite Jump Toggled";
+		Text = "Infinite Jump Activated";
 		Icon = "rbxassetid://6034996698";
 		Duration = 10;
 	})
@@ -77,6 +77,12 @@ local Button1 = FirstPage.AddButton("NoClip (e)", function()
 	end
 	end
 	end)
+	game.StarterGui:SetCore("SendNotification", {
+		Title = "Dev's Hub";
+		Text = "No-Clip Activated";
+		Icon = "rbxassetid://6034996698";
+		Duration = 10;
+	})
 end)
     
 local Button1 = FirstPage.AddButton("Key Teleport (v)", function()
@@ -91,6 +97,12 @@ local Button1 = FirstPage.AddButton("Key Teleport (v)", function()
 	end
 	end
 	end)
+	game.StarterGui:SetCore("SendNotification", {
+		Title = "Dev's Hub";
+		Text = "Key Teleport Activated";
+		Icon = "rbxassetid://6034996698";
+		Duration = 10;
+	})
 end)
 
 local Slider1 = FirstPage.AddSlider("WalkSpeed", {Min = 0, Max = 255, Def = 16}, function(Value)
@@ -105,7 +117,7 @@ local Button2 = SecondPage.AddButton("ESP", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/ic3w0lf22/Unnamed-ESP/master/UnnamedESP.lua",true))()
         game.StarterGui:SetCore("SendNotification", {
 		Title = "Dev's Hub";
-		Text = "ESP Injected";
+		Text = "ESP Activated";
 		Icon = "rbxassetid://6034996698";
 		Duration = 10;
 	})
@@ -115,7 +127,7 @@ local Button3 = ThirdPage.AddButton("NoBlur", function()
     game.Lighting.Blur.Size = 0
         game.StarterGui:SetCore("SendNotification", {
 		Title = "Dev's Hub";
-		Text = "NoBlur Injected";
+		Text = "NoBlur Activated";
 		Icon = "rbxassetid://6034996698";
 		Duration = 10;
 	})
@@ -125,7 +137,7 @@ local Button3 = ThirdPage.AddButton("NoFog", function()
      game.Lighting.FogEnd = 999999999
         game.StarterGui:SetCore("SendNotification", {
 		Title = "Dev's Hub";
-		Text = "NoFog Injected";
+		Text = "NoFog Activated";
 		Icon = "rbxassetid://6034996698";
 		Duration = 10;
 	})
@@ -135,7 +147,7 @@ local Button3 = ThirdPage.AddButton("LowGravity", function()
        game.Workspace.Gravity = 15
         game.StarterGui:SetCore("SendNotification", {
 		Title = "Dev's Hub";
-		Text = "LowGravity Injected";
+		Text = "LowGravity Activated";
 		Icon = "rbxassetid://6034996698";
 		Duration = 10;
 	})
@@ -149,7 +161,7 @@ local Button3 = ThirdPage.AddButton("FullBright", function()
         end
         game.StarterGui:SetCore("SendNotification", {
 		Title = "Dev's Hub";
-		Text = "FullBright Injected";
+		Text = "FullBright Activated";
 		Icon = "rbxassetid://6034996698";
 		Duration = 10;
 	})
@@ -188,6 +200,12 @@ end)
 
 local Button4 = FourthPage.AddButton("FunkyFriday Autoplayer", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/wally-rblx/funky-friday-autoplay/main/main.lua",true))()
+	    game.StarterGui:SetCore("SendNotification", {
+		Title = "Dev's Hub";
+		Text = "Scripts Injected";
+		Icon = "rbxassetid://6034996698";
+		Duration = 10;
+	})
 end)
 
 local Button5 = FithPage.AddButton("DestroyGui", function()
