@@ -46,35 +46,59 @@ local Toggle1 = FirstPage.AddToggle("InfiniteJump", false, function(Value)
 end)
 
 local Button1 = FirstPage.AddButton("NoClip (e)", function()
-    noclip = false
-    game:GetService('RunService').Stepped:connect(function()
-    if noclip then
-    game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
-    end
-    end)
-    plr = game.Players.LocalPlayer
-    mouse = plr:GetMouse()
-    mouse.KeyDown:connect(function(key)
- 
-    if key == "e" then
-    noclip = not noclip
-    game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
-    end
-    end)
-    print('Loaded')
-    print('Press "E" to noclip')
-    end)
+	local noclipplayer = game:GetService("Players").LocalPlayer
+	local noclipmouse = noclipplayer:GetMouse()
+
+	local donoclip = false
+	local noclip = false
+
+	function b_noclip(key)
+	if (key == "b") then
+	if noclip == false then
+	donoclip = true
+
+	noclip = true
+	elseif noclip == true then
+	donoclip = false
+
+	noclip = false
+	end
+	end
+	end
+
+	noclipmouse.KeyDown:connect(b_noclip)
+
+	game:GetService("Players").LocalPlayer.Character.Head.Touched:connect(function(obj)
+	if obj ~= workspace.Terrain then
+	if donoclip == true then
+	obj.CanCollide = false
+	else
+	obj.CanCollide = true
+	end
+	end
+	end)
+end)
     
-    local Button1 = FirstPage.AddButton("Key Teleport (v)", function()
-    print("Hello")
+local Button1 = FirstPage.AddButton("Key Teleport (v)", function()
+	plr = game.Players.LocalPlayer
+	hum = plr.Character.HumanoidRootPart
+	mouse = plr:GetMouse()
+
+	mouse.KeyDown:connect(function(key)
+	if key == "v" then
+	if mouse.Target then
+	hum.CFrame = CFrame.new(mouse.Hit.x, mouse.Hit.y + 5, mouse.Hit.z)
+	end
+	end
+	end)
 end)
 
 local Slider1 = FirstPage.AddSlider("WalkSpeed", {Min = 0, Max = 255, Def = 16}, function(Value)
-game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
 end)
 
 local Slider1 = FirstPage.AddSlider("JumpPower", {Min = 0, Max = 255, Def = 50}, function(Value)
-game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+	game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
 end)
 
 local Button2 = SecondPage.AddButton("ESP", function()
