@@ -53,7 +53,7 @@ local Button1 = FirstPage.AddButton("NoClip (e)", function()
 	local noclip = false
 
 	function b_noclip(key)
-	if (key == "b") then
+	if (key == "e") then
 	if noclip == false then
 	donoclip = true
 
